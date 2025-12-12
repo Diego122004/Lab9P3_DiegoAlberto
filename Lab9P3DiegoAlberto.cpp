@@ -1,19 +1,57 @@
-// Lab9P3DiegoAlberto.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
-//
+
 
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include "Fabrica.h"
 
-int main()
-{
-    std::cout << "Hello World!\n";
+using namespace std;
+
+void menu();
+
+void menu() {
+	Fabrica* f = new Fabrica;
+	cout << "Menu de Opciones:" << endl;
+	cout << "1. Crear Fabrica" << endl;
+	cout << "2. Listar Todos" << endl;
+	cout << "3. Listar Sin DF" << endl;
+    cout << "4. Listar Con DF" << endl;
+    cout << "5. Guardar Archivo" << endl;
+	cout << "0. Salir" << endl;
+	cout << "Seleccione una opcion: ";
+    int opcion;
+    cin >> opcion;
+
+    switch (opcion) {
+    case 1:
+		f->adicionarCarroNuevo();
+        break;
+    case 2:
+		f->listarTodos();
+        break;
+    case 3:
+        f->listarSinDf();
+        break;
+	case 4:
+        f->listarConDf();
+		break;
+        case 5:
+        f->guardarCarros();
+		break;
+    case 0:
+        cout << "Saliendo... Gracias.\n";
+        return; // finaliza la recursión
+    default:
+        cout << "Opcion no valida. Intente de nuevo.\n";
+    }
+
+
+
+    // Llamada recursiva al menú
+    menu();
 }
 
-// Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
-// Depurar programa: F5 o menú Depurar > Iniciar depuración
-
-// Sugerencias para primeros pasos: 1. Use la ventana del Explorador de soluciones para agregar y administrar archivos
-//   2. Use la ventana de Team Explorer para conectar con el control de código fuente
-//   3. Use la ventana de salida para ver la salida de compilación y otros mensajes
-//   4. Use la ventana Lista de errores para ver los errores
-//   5. Vaya a Proyecto > Agregar nuevo elemento para crear nuevos archivos de código, o a Proyecto > Agregar elemento existente para agregar archivos de código existentes al proyecto
-//   6. En el futuro, para volver a abrir este proyecto, vaya a Archivo > Abrir > Proyecto y seleccione el archivo .sln
+int main() {
+	srand(time(0)); // Semilla para numeros aleatorios
+	menu();
+};
